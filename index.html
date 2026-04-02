@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inglés II - TP1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Inglés II - TP1</h1>
+        <h2>Profesora: Claudia Pellegrini</h2>
+        <div class="datos-alumno">
+            <label>Apellido(s): <input type="text" id="apellido" required></label>
+            <label>Nombre(s): <input type="text" id="nombre" required></label>
+            <input type="hidden" id="fecha">
+        </div>
+        <p>Completa los ejercicios según las consignas. Al finalizar, exporta tus respuestas en PDF.</p>
+    </header>
+    <main id="ejercicios">
+        <!-- Ejercicio 1 -->
+        <section class="ejercicio">
+            <h2>Before watching</h2>
+            <h3>1. Work in small groups. Discuss the questions.</h3>
+            <ol>
+                <li>What’s your hometown like?<br>
+                    <textarea name="e1p1" rows="2" cols="80"></textarea>
+                </li>
+                <li>Look at the pictures. Where is this? What do you know about this city?<br>
+                    <textarea name="e1p2" rows="2" cols="80"></textarea>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Ejercicio 2 -->
+        <section class="ejercicio">
+            <h2>While watching</h2>
+            <h3>2. Watch the video. Tick (✓) the places that are mentioned.</h3>
+            <div class="checkbox-list">
+                <label><input type="checkbox" name="e2" value="Chicago"> Chicago</label>
+                <label><input type="checkbox" name="e2" value="Manhattan"> Manhattan</label>
+                <label><input type="checkbox" name="e2" value="Calcutta"> Calcutta</label>
+                <label><input type="checkbox" name="e2" value="Poland"> Poland</label>
+                <label><input type="checkbox" name="e2" value="Norway"> Norway</label>
+                <label><input type="checkbox" name="e2" value="Washington, D.C."> Washington, D.C.</label>
+                <label><input type="checkbox" name="e2" value="New Delhi"> New Delhi</label>
+                <label><input type="checkbox" name="e2" value="Belarus"> Belarus</label>
+                <label><input type="checkbox" name="e2" value="Germany"> Germany</label>
+                <label><input type="checkbox" name="e2" value="Sweden"> Sweden</label>
+            </div>
+        </section>
+
+        <!-- Ejercicio 3 -->
+        <section class="ejercicio">
+            <h3>3. Watch <em>A New York life</em>. Answer the questions.</h3>
+            <ol>
+                <li>Why does Nick like living in New York?<br>
+                    <textarea name="e3p1" rows="2" cols="80"></textarea>
+                </li>
+                <li>What does he like most about living in New York?<br>
+                    <textarea name="e3p2" rows="2" cols="80"></textarea>
+                </li>
+                <li>What reputation do New Yorkers have? What does Nick think about them?<br>
+                    <textarea name="e3p3" rows="2" cols="80"></textarea>
+                </li>
+                <li>What does Nick like about his neighbourhood?<br>
+                    <textarea name="e3p4" rows="2" cols="80"></textarea>
+                </li>
+                <li>What’s his apartment like?<br>
+                    <textarea name="e3p5" rows="2" cols="80"></textarea>
+                </li>
+                <li>What does Nick like doing in his free time?<br>
+                    <textarea name="e3p6" rows="2" cols="80"></textarea>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Ejercicio 4 -->
+        <section class="ejercicio">
+            <h3>4. Watch <em>A family story</em>. <u>Underline</u> the correct options.</h3>
+            <ol>
+                <li>Like many other European immigrants, Nick’s father’s family came to New York to
+                    <label><input type="radio" name="e4p1" value="escape the war"> escape the war</label> /
+                    <label><input type="radio" name="e4p1" value="find better jobs"> find better jobs</label>.
+                </li>
+                <li>Nick’s grandparents met when
+                    <label><input type="radio" name="e4p2" value="his grandmother helped his grandfather"> his
+                        grandmother helped his grandfather</label> /
+                    <label><input type="radio" name="e4p2" value="his grandfather helped his grandmother"> his
+                        grandfather helped his grandmother</label> with an everyday task.
+                </li>
+                <li>Nick’s parents met in
+                    <label><input type="radio" name="e4p3" value="India"> India</label> /
+                    <label><input type="radio" name="e4p3" value="New York"> New York</label>.
+                </li>
+                <li>Nick looks just like his
+                    <label><input type="radio" name="e4p4" value="mother"> mother</label> /
+                    <label><input type="radio" name="e4p4" value="father"> father</label>, according to everybody else.
+                </li>
+                <li>Nick’s family often go to the opera when they visit
+                    <label><input type="radio" name="e4p5" value="Germany"> Germany</label> /
+                    <label><input type="radio" name="e4p5" value="India"> India</label> /
+                    <label><input type="radio" name="e4p5" value="the Caribbean"> the Caribbean</label>.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Ejercicio 5 -->
+        <section class="ejercicio">
+            <h3>5. Watch <em>If you can make it here ...</em> Are the sentences true (✓) or false (✗)? Correct the false
+                sentences.</h3>
+            <ol>
+                <li>His mother is artistic, but his father is more of a businessman.<br>
+                    <label><input type="radio" name="e5p1" value="True" onchange="mostrarCorreccion(1)"> True</label>
+                    <label><input type="radio" name="e5p1" value="False" onchange="mostrarCorreccion(1)">
+                        False</label><br>
+                    <textarea name="e5c1" rows="1" cols="80" placeholder="If the answer is false, correct the sentence"
+                        style="display:none"></textarea>
+                </li>
+                <li>Nick thinks he received positive qualities from his mum and his dad.<br>
+                    <label><input type="radio" name="e5p2" value="True" onchange="mostrarCorreccion(2)"> True</label>
+                    <label><input type="radio" name="e5p2" value="False" onchange="mostrarCorreccion(2)">
+                        False</label><br>
+                    <textarea name="e5c2" rows="1" cols="80" placeholder="If the answer is false, correct the sentence"
+                        style="display:none"></textarea>
+                </li>
+                <li>Nick has started making movies recently.<br>
+                    <label><input type="radio" name="e5p3" value="True" onchange="mostrarCorreccion(3)"> True</label>
+                    <label><input type="radio" name="e5p3" value="False" onchange="mostrarCorreccion(3)">
+                        False</label><br>
+                    <textarea name="e5c3" rows="1" cols="80" placeholder="If the answer is false, correct the sentence"
+                        style="display:none"></textarea>
+                </li>
+                <li>Nick is always doing one project at a time.<br>
+                    <label><input type="radio" name="e5p4" value="True" onchange="mostrarCorreccion(4)"> True</label>
+                    <label><input type="radio" name="e5p4" value="False" onchange="mostrarCorreccion(4)">
+                        False</label><br>
+                    <textarea name="e5c4" rows="1" cols="80" placeholder="If the answer is false, correct the sentence"
+                        style="display:none"></textarea>
+                </li>
+                <li>Most of the footage that Nick shoots goes into the final video.<br>
+                    <label><input type="radio" name="e5p5" value="True" onchange="mostrarCorreccion(5)"> True</label>
+                    <label><input type="radio" name="e5p5" value="False" onchange="mostrarCorreccion(5)">
+                        False</label><br>
+                    <textarea name="e5c5" rows="1" cols="80" placeholder="If the answer is false, correct the sentence"
+                        style="display:none"></textarea>
+                </li>
+                <li>Nick hopes that his films will make the world a better place.<br>
+                    <label><input type="radio" name="e5p6" value="True" onchange="mostrarCorreccion(6)"> True</label>
+                    <label><input type="radio" name="e5p6" value="False" onchange="mostrarCorreccion(6)">
+                        False</label><br>
+                    <textarea name="e5c6" rows="1" cols="80" placeholder="If the answer is false, correct the sentence"
+                        style="display:none"></textarea>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Ejercicio 6 -->
+        <section class="ejercicio">
+            <h2>After watching</h2>
+            <h3>6. Work with a partner. Discuss the questions.</h3>
+            <ul>
+                <li>Why do you think people are so interested to learn about their family history?<br>
+                    <textarea name="e6p1" rows="2" cols="80"></textarea>
+                </li>
+                <li>Do you want to know more about your own family history? Why/Why not?<br>
+                    <textarea name="e6p2" rows="2" cols="80"></textarea>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <button id="exportarPDF">Exportar a PDF</button>
+    <footer>
+        <p>Trabajo práctico para Inglés II - UTN FRLP</p>
+    </footer>
+    <script>
+        function mostrarCorreccion(num) {
+            const radioFalse = document.querySelector(`input[type='radio'][name='e5p${num}'][value='False']`);
+            const textarea = document.querySelector(`textarea[name='e5c${num}']`);
+            if (radioFalse && radioFalse.checked) {
+                textarea.style.display = '';
+            } else {
+                textarea.style.display = 'none';
+                textarea.value = '';
+            }
+        }
+    </script>
+    <script src="html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
