@@ -142,6 +142,12 @@ function exportarPDF() {
     const textareasOriginal = main.querySelectorAll('textarea');
     const textareasClon = clone.querySelectorAll('textarea');
     textareasOriginal.forEach((area, i) => {
+        // En el Punto 5, si no se marcó "False", el textarea está oculto y no debe salir en el PDF
+        if (area.style.display === 'none') {
+            textareasClon[i].parentNode.removeChild(textareasClon[i]);
+            return;
+        }
+
         const valor = area.value;
         const divRespuesta = document.createElement('div');
         divRespuesta.className = 'respuesta-texto';
@@ -149,32 +155,34 @@ function exportarPDF() {
         divRespuesta.textContent = valor;
         textareasClon[i].parentNode.replaceChild(divRespuesta, textareasClon[i]);
     });
-    // Reemplazar checkboxes seleccionados por texto ✓ valor
+    // Reemplazar checkboxes por texto [✓] o [ ] según corresponda
     const checksOriginal = main.querySelectorAll('input[type="checkbox"]');
     const checksClon = clone.querySelectorAll('input[type="checkbox"]');
     checksOriginal.forEach((cb, i) => {
-        const label = checksClon[i].parentNode;
-        if (cb.checked) {
-            const checkText = document.createElement('span');
-            checkText.textContent = `✓ ${cb.value}`;
-            label.parentNode.replaceChild(checkText, label);
-        } else {
-            label.parentNode.removeChild(label);
-        }
+        const labelClone = checksClon[i].parentNode;
+        const mark = cb.checked ? '☑' : '☐'; // Usar símbolos Unicode para mejor visualización
+        const span = document.createElement('span');
+        span.innerHTML = `${mark} ${cb.value}`;
+        span.style.paddingLeft = '5px';
+        labelClone.parentNode.replaceChild(span, labelClone);
     });
 
-    // Reemplazar radios seleccionados por texto ✓ valor
+    // Reemplazar radios por su valor, subrayando el seleccionado en Azul UTN
     const radiosOriginal = main.querySelectorAll('input[type="radio"]');
     const radiosClon = clone.querySelectorAll('input[type="radio"]');
     radiosOriginal.forEach((rb, i) => {
-        const label = radiosClon[i].parentNode;
+        const labelClone = radiosClon[i].parentNode;
+        const span = document.createElement('span');
+        span.textContent = rb.value;
+        span.style.padding = '0 5px';
         if (rb.checked) {
-            const radioText = document.createElement('span');
-            radioText.textContent = `✓ ${rb.value}`;
-            label.parentNode.replaceChild(radioText, label);
-        } else {
-            label.parentNode.removeChild(label);
+            span.style.textDecoration = 'underline';
+            span.style.textDecorationColor = '#003366';
+            span.style.textDecorationThickness = '2px';
+            span.style.color = '#003366';
+            span.style.fontWeight = 'bold';
         }
+        labelClone.parentNode.replaceChild(span, labelClone);
     });
     // Inputs tipo text (no alumno)
     const textsOriginal = main.querySelectorAll('input[type="text"]');
@@ -196,13 +204,43 @@ function exportarPDF() {
     pie.innerHTML = 'Trabajo Práctico presentado para Inglés II - UTN FRLP';
     contenedor.appendChild(pie);
 
-    // Opciones para html2pdf
-    const opt = {
-        margin: 0.5,
-        filename: `ingles_II_unit1_TP1_${apellido}_${nombre}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(contenedor).save();
+    // Intentar imprimir directamente para evitar errores de seguridad con archivos locales
+    const printWindow = window.open('', '_blank');
+    const fileName = `TP1_Ingles_II_${apellido}_${nombre}`.replace(/\s+/g, '_');
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>${fileName}</title>
+                <link rel="stylesheet" href="styles.css">
+                <style>
+                    body { padding: 20px; background: white; font-family: Arial, sans-serif; }
+                    main { box-shadow: none; margin: 0; padding: 0; max-width: 100%; }
+                    .floating-video-btn { display: none !important; }
+                    button { display: none !important; }
+                    .checkbox-list { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+                    .respuesta-texto { 
+                        font-weight: bold; 
+                        font-style: italic; 
+                        color: #003366; 
+                        margin: 5px 0 15px 15px;
+                        padding: 5px 10px;
+                        border-left: 3px solid #003366;
+                        background: #f8faff;
+                    }
+                </style>
+            </head>
+            <body>
+                ${contenedor.innerHTML}
+                <script>
+                    window.onload = function() {
+                        setTimeout(() => {
+                            window.print();
+                            window.close();
+                        }, 500);
+                    };
+                </script>
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
 }
